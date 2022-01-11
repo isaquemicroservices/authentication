@@ -5,6 +5,7 @@ option go_package = "authuser/";
 
 service Auth {
 	rpc CreateUser(User) returns (Empty);
+	rpc Login(Credentials) returns (User);
 }
 
 message User {
@@ -17,3 +18,8 @@ message User {
 }
 
 message Empty {}
+
+message Credentials {
+	string email = 1;
+	string passw = 2;
+}
