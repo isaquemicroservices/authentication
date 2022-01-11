@@ -1,0 +1,6 @@
+syntax="proto3";
+
+// package to protobuf file
+option go_package = "auth/";
+
+service Auth {}
