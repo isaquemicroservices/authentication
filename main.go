@@ -4,9 +4,9 @@ import (
 	"log"
 	"net"
 
-	app "github.com/isaqueveras/authentication-microservice/application/user"
+	app "github.com/isaqueveras/authentication-microservice/application/auth"
 	config "github.com/isaqueveras/authentication-microservice/configuration"
-	inter "github.com/isaqueveras/authentication-microservice/interfaces/user"
+	inter "github.com/isaqueveras/authentication-microservice/interfaces/auth"
 	gogrpc "google.golang.org/grpc"
 )
 
@@ -23,7 +23,7 @@ func main() {
 	// Creating new server
 	server := gogrpc.NewServer()
 
-	// Product registration server
+	// Auth registration server
 	app.RegisterAuthServer(server, &inter.Server{})
 
 	// Message of success
