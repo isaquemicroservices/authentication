@@ -4,9 +4,9 @@ import (
 	"log"
 	"net"
 
-	app "github.com/isaqueveras/authentication-microservice/application/auth"
+	app "github.com/isaqueveras/authentication-microservice/application/authuser"
 	config "github.com/isaqueveras/authentication-microservice/configuration"
-	inter "github.com/isaqueveras/authentication-microservice/interfaces/auth"
+	inter "github.com/isaqueveras/authentication-microservice/interfaces/authuser"
 	gogrpc "google.golang.org/grpc"
 )
 

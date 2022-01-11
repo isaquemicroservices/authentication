@@ -30,7 +30,7 @@ $ go tool cover -html=cover.out -o cover.html
 
 ### Create user table in PostgreSQL 
 ```sql
-CREATE TABLE public.t_user (
+CREATE TABLE public.t_users (
   id serial4 PRIMARY KEY,
   "name" varchar(100) NOT NULL,
   email varchar(100) NOT NULL,

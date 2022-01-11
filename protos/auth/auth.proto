@@ -1,7 +1,7 @@
 syntax="proto3";
 
 // package to protobuf file
-option go_package = "auth/";
+option go_package = "authuser/";
 
 service Auth {
 	rpc CreateUser(User) returns (Empty);

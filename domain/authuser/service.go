@@ -1,6 +1,8 @@
-package auth
+package authuser
 
-import "github.com/isaqueveras/authentication-microservice/configuration/database"
+import (
+	"github.com/isaqueveras/authentication-microservice/configuration/database"
+)
 
 // Service models a service base struct
 type Service struct {

@@ -1,9 +1,9 @@
-package auth
+package authuser
 
 import (
 	"testing"
 
-	app "github.com/isaqueveras/authentication-microservice/application/auth"
+	app "github.com/isaqueveras/authentication-microservice/application/authuser"
 )
 
 var server app.AuthServer = &Server{}
