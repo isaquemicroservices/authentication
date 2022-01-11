@@ -3,4 +3,17 @@ syntax="proto3";
 // package to protobuf file
 option go_package = "auth/";
 
-service Auth {}
+service Auth {
+	rpc CreateUser(User) returns (Empty);
+}
+
+message User {
+	int64 id = 1;
+	string name = 2;
+	string email = 3;
+	string passw = 4;
+	string createdAt = 5;
+	string updatedAt = 6;
+}
+
+message Empty {}
