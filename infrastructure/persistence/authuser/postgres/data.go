@@ -27,8 +27,10 @@ func (pg *PGAuth) CreateUser(in infra.User) (err error) {
 
 // GetUser get data of user on database
 func (pg *PGAuth) GetUser(email *string) (res *infra.User, err error) {
+	res = new(infra.User)
+
 	if err = pg.DB.Builder.
-		Select("id, name, email, passw, created_at").
+		Select("id, name, email, passw").
 		From("public.t_users").
 		Where(squirrel.Eq{
 			"email": email,
@@ -38,7 +40,6 @@ func (pg *PGAuth) GetUser(email *string) (res *infra.User, err error) {
 			&res.Name,
 			&res.Email,
 			&res.Passw,
-			&res.CreateAt,
 		); err != nil {
 		return res, err
 	}

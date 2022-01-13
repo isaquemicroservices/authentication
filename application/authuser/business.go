@@ -54,6 +54,8 @@ func CreateUser(ctx context.Context, in *User) (err error) {
 
 // Login
 func Login(ctx context.Context, in *Credentials) (res *User, err error) {
+	res = new(User)
+
 	var transaction *database.DBTransaction
 
 	// Initializing transaction with database
