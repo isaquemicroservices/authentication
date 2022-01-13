@@ -13,8 +13,9 @@ message User {
 	string name = 2;
 	string email = 3;
 	string passw = 4;
-	string createdAt = 5;
-	string updatedAt = 6;
+	string token = 5;
+	string createdAt = 6;
+	string updatedAt = 7;
 }
 
 message Empty {}

@@ -23,3 +23,21 @@ func (pg *PGAuth) CreateUser(in infra.User) (err error) {
 
 	return nil
 }
+
+// GetUser get data of user on database
+func (pg *PGAuth) GetUser(id *string) (res *infra.User, err error) {
+	if err = pg.DB.Builder.
+		Select("id, name, email, passw, created_at").
+		From("public.t_users").
+		Scan(
+			&res.Id,
+			&res.Name,
+			&res.Email,
+			&res.Passw,
+			&res.CreateAt,
+		); err != nil {
+		return res, err
+	}
+
+	return
+}

@@ -4,5 +4,6 @@ import "github.com/isaqueveras/authentication-microservice/infrastructure/persis
 
 // IAuth defines all services available for authentication
 type IAuth interface {
-	CreateUser(authuser.User) error
+	CreateUser(user authuser.User) error
+	GetUser(email *string) (*authuser.User, error)
 }
