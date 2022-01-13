@@ -27,7 +27,7 @@ func main() {
 	app.RegisterAuthServer(server, &inter.Server{})
 
 	// Message of success
-	log.Println("Server is running in port", config.Get().Address)
+	log.Println(config.Get().Name, "is running in port", config.Get().Address)
 
 	// Initializing server
 	if err = server.Serve(listen); err != nil {

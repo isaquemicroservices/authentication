@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"github.com/Masterminds/squirrel"
 	"github.com/isaqueveras/authentication-microservice/configuration/database"
 	infra "github.com/isaqueveras/authentication-microservice/infrastructure/persistence/authuser"
 )
@@ -25,10 +26,13 @@ func (pg *PGAuth) CreateUser(in infra.User) (err error) {
 }
 
 // GetUser get data of user on database
-func (pg *PGAuth) GetUser(id *string) (res *infra.User, err error) {
+func (pg *PGAuth) GetUser(email *string) (res *infra.User, err error) {
 	if err = pg.DB.Builder.
 		Select("id, name, email, passw, created_at").
 		From("public.t_users").
+		Where(squirrel.Eq{
+			"email": email,
+		}).
 		Scan(
 			&res.Id,
 			&res.Name,

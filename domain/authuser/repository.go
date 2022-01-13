@@ -20,6 +20,6 @@ func (r *repository) CreateUser(in authuser.User) error {
 	return r.pg.CreateUser(in)
 }
 
-func (r *repository) GetUser(id *int64) (*authuser.User, error) {
-	return r.pg.GetUser(id)
+func (r *repository) GetUser(email *string) (*authuser.User, error) {
+	return r.pg.GetUser(email)
 }
