@@ -3,7 +3,6 @@ package authuser
 import (
 	"context"
 	"errors"
-	"strconv"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -81,7 +80,7 @@ func Login(ctx context.Context, in *Credentials) (res *User, err error) {
 
 	clams := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
 		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(), // 1 day
-		Issuer:    strconv.Itoa(int(dataUser.Id)),
+		Issuer:    "isaqueveras.auth",
 	})
 
 	if res.Token, err = clams.SignedString([]byte(config.Get().SecretKey)); err != nil {
