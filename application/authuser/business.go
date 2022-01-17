@@ -14,6 +14,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type Session struct {
+	Administrator *bool   `json:"administrator,omitempty"`
+	Name          *string `json:"name,omitempty"`
+	jwt.StandardClaims
+}
+
 // CreateUser create user
 func CreateUser(ctx context.Context, in *User) (err error) {
 	var (
@@ -78,13 +84,15 @@ func Login(ctx context.Context, in *Credentials) (res *User, err error) {
 		return nil, err
 	}
 
-	clams := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(), // 1 day
-		Issuer:    "isaqueveras.auth",
-	})
-
-	if res.Token, err = clams.SignedString([]byte(config.Get().SecretKey)); err != nil {
-		return nil, err
+	if res.Token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, Session{
+		Name: utils.GetPointerString(dataUser.Name),
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(), // 1 day
+			Issuer:    "isaqueveras.auth",
+			NotBefore: time.Now().Unix(),
+		},
+	}).SignedString([]byte(config.Get().SecretKey)); err != nil {
+		return nil, errors.New("Could not generate token")
 	}
 
 	res.Id = dataUser.Id

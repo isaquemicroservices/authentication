@@ -32,17 +32,11 @@ func (pg *PGAuth) GetUser(email *string) (res *infra.User, err error) {
 	if err = pg.DB.Builder.
 		Select("id, name, email, passw").
 		From("public.t_users").
-		Where(squirrel.Eq{
-			"email": email,
-		}).
-		Scan(
-			&res.Id,
-			&res.Name,
-			&res.Email,
-			&res.Passw,
-		); err != nil {
+		Where(squirrel.Eq{"email": email}).
+		Limit(1).
+		Scan(&res.Id, &res.Name, &res.Email, &res.Passw); err != nil {
 		return res, err
 	}
 
-	return
+	return res, nil
 }
