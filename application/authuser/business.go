@@ -62,7 +62,6 @@ func Login(ctx context.Context, in *Credentials) (res *User, err error) {
 	res = new(User)
 
 	var transaction *database.DBTransaction
-
 	// Initializing transaction with database
 	if transaction, err = database.OpenConnection(ctx, true); err != nil {
 		return nil, err
@@ -73,11 +72,7 @@ func Login(ctx context.Context, in *Credentials) (res *User, err error) {
 	var repo = domain.New(transaction)
 	dataUser, err := repo.GetUser(utils.GetPointerString(in.Email))
 	if err != nil {
-		return nil, err
-	}
-
-	if dataUser.Id == 0 {
-		return nil, errors.New("User not found")
+		return nil, errors.New("User not found: " + err.Error())
 	}
 
 	if err = bcrypt.CompareHashAndPassword([]byte(dataUser.Passw), []byte(in.Passw)); err != nil {
