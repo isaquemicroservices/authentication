@@ -28,4 +28,9 @@ func TestPointer(t *testing.T) {
 		var value time.Time = time.Now()
 		assert.Equal(t, value, *utils.GetPointerTime(value))
 	})
+
+	t.Run("TestGetPointerBool", func(t *testing.T) {
+		var value bool = true
+		assert.Equal(t, value, *utils.GetPointerBool(value))
+	})
 }

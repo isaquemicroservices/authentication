@@ -21,3 +21,8 @@ func GetPointerFloat64(value float64) *float64 {
 func GetPointerTime(value time.Time) *time.Time {
 	return &value
 }
+
+// GetPointerBool returns a pointer to the given boolean
+func GetPointerBool(value bool) *bool {
+	return &value
+}
